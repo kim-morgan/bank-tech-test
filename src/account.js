@@ -11,6 +11,13 @@ class Account  {
   deposit(money) {
     this.balance += money;
   }
+
+  withdraw(money) {
+    if (money > this.balance) {
+      throw "Insufficient funds";
+    }
+    this.balance -= money;
+  }
 }
 
 module.exports = Account;
