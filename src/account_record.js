@@ -1,5 +1,7 @@
-class Statement {
-
+class AccountRecord {
+  printStatement() {
+    return "date || credit || debit || balance";
+  }
 }
 
-module.exports = Statement;
+module.exports = AccountRecord;
