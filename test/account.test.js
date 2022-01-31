@@ -17,4 +17,12 @@ describe('Account', () => {
   it('should not be able to withdraw more than available funds', () => {
     expect(() => { account.withdraw(2000); }).toThrow("Insufficient funds");
   })
+  it('can make deposit with two decimal places', () =>{
+    account.deposit(50.55);
+    expect(account.getBalance()).toBe(300.55);
+  });
+  it('can make withdrawal with two decimal places', () => {
+    account.withdraw(0.55);
+    expect(account.getBalance()).toBe(300);
+  })
 });
