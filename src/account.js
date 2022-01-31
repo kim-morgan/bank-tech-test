@@ -13,10 +13,14 @@ class Account  {
   }
 
   withdraw(money) {
+    this.sufficientFundsCheck(money);
+    this.balance -= money;
+  }
+
+  sufficientFundsCheck(money) {
     if (money > this.balance) {
       throw "Insufficient funds";
     }
-    this.balance -= money;
   }
 }
 
