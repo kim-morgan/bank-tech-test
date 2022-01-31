@@ -9,16 +9,12 @@ class Account  {
   }
 
   deposit(money) {
-    if (money < 0.01) {
-      throw "Transaction value must be more than £0.01";
-    }
+    this.isValidTransaction(money);
     this.balance += money;
   }
 
   withdraw(money) {
-    if (money < 0.01) {
-      throw "Transaction value must be more than £0.01";
-    }
+    this.isValidTransaction(money);
     this.sufficientFundsCheck(money);
     this.balance -= money;
   }
@@ -26,6 +22,12 @@ class Account  {
   sufficientFundsCheck(money) {
     if (money > this.balance) {
       throw "Insufficient funds";
+    }
+  }
+
+  isValidTransaction(money) {
+    if (money < 0.01) {
+      throw "Transaction value must be more than £0.01";
     }
   }
 }
