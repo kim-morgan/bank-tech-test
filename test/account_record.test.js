@@ -5,13 +5,16 @@ beforeAll(() => {
   jest.setSystemTime(new Date(2022, 0, 31));
 });
 
+const getBalanceMock = jest.fn();
+getBalanceMock.mockReturnValueOnce(500).mockReturnValueOnce(250);
+
 let accountClassMock = {
   deposit() { },
   withdraw() { },
-  getBalance() { return 500 }
+  getBalance: getBalanceMock
 }
 
-let record = new AccountRecord();
+let record = new AccountRecord(accountClassMock);
 
 describe("AccountRecord", () => {
   it("Can print a statement, initializing with just the blank header", () => {
