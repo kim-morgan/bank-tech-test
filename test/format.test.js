@@ -11,8 +11,11 @@ describe("Format", () => {
   });
   it("Can format a monetary amount to have two decimal places", () => {
     expect(Format.formatNumber(500)).toBe("500.00");
-  })
+  });
   it("Can format a withdrawal in the correct manner", () => {
-    expect(Format.formatTransaction(new Date(), 500, 200)).toBe("31/01/2022 || || 500.00 || 200.00");
-  })
+    expect(Format.formatTransaction(new Date(), 500, 200, "withdrawal")).toBe("31/01/2022 || || 500.00 || 200.00");
+  });
+  it("Can format a deposit in the correct manner", () => {
+    expect(Format.formatTransaction(new Date(), 500, 600, "deposit")).toBe("31/01/2022 || 500.00 || || 600.00");
+  });
 });
