@@ -9,18 +9,11 @@ class AccountRecord {
     this.formatClass = formatClass;
   }
 
-  recordDeposit(amount) {
+  recordTransaction(amount, type) {
     this.accountInstance.deposit(amount);
     let date = new Date();
     let balance = this.accountInstance.getBalance();
-    this.statement.push(this.formatClass.formatTransaction(date, amount, balance, "deposit"));
-  }
-
-  recordWithdrawal(amount) {
-    this.accountInstance.deposit(amount);
-    let date = new Date();
-    let balance = this.accountInstance.getBalance();
-    this.statement.push(this.formatClass.formatTransaction(date, amount, balance, "withdrawal"));
+    this.statement.push(this.formatClass.formatTransaction(date, amount, balance, type));
   }
 
   printStatement() {
