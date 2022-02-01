@@ -1,7 +1,10 @@
+const AccountRecord = require("./account_record");
+
 class Account {
-  constructor() {
+  constructor(record = new AccountRecord()) {
     this.balance = 0;
     this.minimum_transaction = 0.01;
+    this.record = record;
   }
 
   getBalance() {
