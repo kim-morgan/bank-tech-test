@@ -11,10 +11,17 @@ getBalanceMock.mockReturnValueOnce(500).mockReturnValueOnce(250);
 const depositMock = jest.fn();
 const withdrawMock = jest.fn();
 
-let accountClassMock = {
+const accountClassMock = {
   deposit: depositMock,
   withdraw: withdrawMock,
   getBalance: getBalanceMock
+}
+
+const formatTransactionMock = jest.fn();
+formatTransactionMock.mockReturnValueOnce("31/01/2022 || 500.00 || || 500.00").mockReturnValueOnce("31/01/2022 || || 250.00 || 250.00");
+
+const formatClassMock = {
+  formatTransaction: formatTransactionMock
 }
 
 let record = new AccountRecord(accountClassMock);
