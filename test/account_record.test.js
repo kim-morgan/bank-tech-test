@@ -1,10 +1,5 @@
 const AccountRecord = require("../src/account_record");
 
-beforeAll(() => {
-  jest.useFakeTimers('modern');
-  jest.setSystemTime(new Date(2022, 0, 31));
-});
-
 const getBalanceMock = jest.fn();
 getBalanceMock.mockReturnValueOnce(500).mockReturnValueOnce(250);
 
@@ -24,7 +19,7 @@ const formatClassMock = {
   formatTransaction: formatTransactionMock
 }
 
-let record = new AccountRecord(accountClassMock);
+let record = new AccountRecord(accountClassMock, formatClassMock);
 
 describe("AccountRecord", () => {
   it("Can print a statement, initializing with just the blank header", () => {
