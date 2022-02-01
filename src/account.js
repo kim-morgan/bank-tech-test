@@ -1,7 +1,7 @@
-class Account  {
-
+class Account {
   constructor() {
     this.balance = 0;
+    this.minimum_transaction = 0.01;
   }
 
   getBalance() {
@@ -21,13 +21,13 @@ class Account  {
 
   sufficientFundsCheck(money) {
     if (money > this.balance) {
-      throw "Insufficient funds";
+      throw new Error('Insufficient funds');
     }
   }
 
   isValidTransaction(money) {
-    if (money < 0.01) {
-      throw "Transaction value must be more than £0.01";
+    if (money < this.minimum_transaction) {
+      throw new Error('Transaction value must be more than £0.01');
     }
   }
 }
