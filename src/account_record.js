@@ -19,8 +19,12 @@ class AccountRecord {
     this.statement.splice(1, 0, (this.formatClass.formatTransaction(date, amount, balance, type)));
   }
 
-  printStatement() {
+  getStatement() {
     return this.statement.join('\n');
+  }
+
+  printStatement() {
+    console.log(this.getStatement());
   }
 }
 
