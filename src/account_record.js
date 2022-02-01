@@ -10,7 +10,12 @@ class AccountRecord {
   }
 
   recordTransaction(amount, type) {
-    this.accountInstance.deposit(amount);
+    if (type === "deposit") {
+      this.accountInstance.deposit(amount);
+    } else if (type === "withdrawal") {
+      this.accountInstance.withdraw(amount);
+    }
+    
     let date = new Date();
     let balance = this.accountInstance.getBalance();
     this.statement.push(this.formatClass.formatTransaction(date, amount, balance, type));
