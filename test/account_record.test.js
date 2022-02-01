@@ -8,9 +8,12 @@ beforeAll(() => {
 const getBalanceMock = jest.fn();
 getBalanceMock.mockReturnValueOnce(500).mockReturnValueOnce(250);
 
+const depositMock = jest.fn();
+const withdrawMock = jest.fn();
+
 let accountClassMock = {
-  deposit() { },
-  withdraw() { },
+  deposit: depositMock,
+  withdraw: withdrawMock,
   getBalance: getBalanceMock
 }
 
