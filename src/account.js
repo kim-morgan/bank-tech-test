@@ -1,4 +1,4 @@
-const AccountRecord = require("./account_record");
+const AccountRecord = require('./account_record');
 
 class Account {
   constructor(record = new AccountRecord()) {
@@ -14,14 +14,14 @@ class Account {
   deposit(money) {
     this.isValidTransaction(money);
     this.balance += money;
-    this.record.recordTransaction(money, this.balance, "deposit")
+    this.record.recordTransaction(money, this.balance, 'deposit');
   }
 
   withdraw(money) {
     this.isValidTransaction(money);
     this.sufficientFundsCheck(money);
     this.balance -= money;
-    this.record.recordTransaction(money, this.balance, "withdrawal")
+    this.record.recordTransaction(money, this.balance, 'withdrawal');
   }
 
   sufficientFundsCheck(money) {
