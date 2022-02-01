@@ -16,7 +16,7 @@ class AccountRecord {
     }
     const date = new Date();
     const balance = this.accountInstance.getBalance();
-    this.statement.push(this.formatClass.formatTransaction(date, amount, balance, type));
+    this.statement.splice(1, 0, (this.formatClass.formatTransaction(date, amount, balance, type)));
   }
 
   printStatement() {

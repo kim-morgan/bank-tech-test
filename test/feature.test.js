@@ -19,7 +19,7 @@ describe('Integrated operation of classes', () => {
   it('should be able to make a deposit followed by a withdrawal and have it shown on the statement', () => {
     record.recordTransaction(500, 'deposit');
     record.recordTransaction(250, 'withdrawal');
-    expect(record.printStatement()).toBe('date || credit || debit || balance\n31/01/2022 || 500.00 || || 500.00\n31/01/2022 || || 250.00 || 250.00');
+    expect(record.printStatement()).toBe('date || credit || debit || balance\n31/01/2022 || || 250.00 || 250.00\n31/01/2022 || 500.00 || || 500.00');
   });
   it('should throw error when there were insufficient funds and not record the transaction', () => {
     expect(() => { record.recordTransaction(250, 'withdrawal'); }).toThrow('Insufficient funds');

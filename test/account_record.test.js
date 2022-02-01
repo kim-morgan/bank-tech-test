@@ -1,18 +1,13 @@
 const AccountRecord = require('../src/account_record');
 
-const getBalanceMock = jest.fn();
-getBalanceMock.mockReturnValueOnce(500).mockReturnValueOnce(250);
-const depositMock = jest.fn();
-const withdrawMock = jest.fn();
-
 const accountClassMock = {
-  deposit: depositMock,
-  withdraw: withdrawMock,
-  getBalance: getBalanceMock,
+  deposit: jest.fn(),
+  withdraw: jest.fn(),
+  getBalance: jest.fn(),
 };
 
 const formatTransactionMock = jest.fn();
-formatTransactionMock.mockReturnValueOnce('31/01/2022 || 500.00 || || 500.00').mockReturnValueOnce('31/01/2022 || || 250.00 || 250.00');
+formatTransactionMock.mockReturnValueOnce('31/01/2022 || 500.00 || || 500.00').mockReturnValueOnce('31/01/2022 || 10.00 || || 510.00').mockReturnValueOnce('31/01/2022 || || 250.00 || 250.00');
 
 const formatClassMock = {
   formatTransaction: formatTransactionMock,
@@ -28,8 +23,12 @@ describe('AccountRecord', () => {
     record.recordTransaction(500, 'deposit');
     expect(record.printStatement()).toBe('date || credit || debit || balance\n31/01/2022 || 500.00 || || 500.00');
   });
+  it('Record transactions in reverse chronological order', () => {
+    record.recordTransaction(10, 'deposit');
+    expect(record.printStatement()).toBe('date || credit || debit || balance\n31/01/2022 || 10.00 || || 510.00\n31/01/2022 || 500.00 || || 500.00');
+  });
   it('Can record a withdrawal and show it on the statement', () => {
     record.recordTransaction(250, 'withdrawal');
-    expect(record.printStatement()).toBe('date || credit || debit || balance\n31/01/2022 || 500.00 || || 500.00\n31/01/2022 || || 250.00 || 250.00');
+    expect(record.printStatement()).toBe('date || credit || debit || balance\n31/01/2022 || || 250.00 || 250.00\n31/01/2022 || 10.00 || || 510.00\n31/01/2022 || 500.00 || || 500.00');
   });
 });
