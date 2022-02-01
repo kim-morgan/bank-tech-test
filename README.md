@@ -52,3 +52,10 @@ account.statement();
 
 ## Demonstration
 ![Screenshot of programme](https://github.com/kim-morgan/bank-tech-test/blob/main/images/screenshot-bank-test.png?raw=true)
+
+## Approach
+
+My approach was to use three classes Account, AccountRecord, Format
+* Account: This is the interface through which the user can withdraw, deposit, and see their statement printed to the terminal. I chose to make this the main interface as it seems the most intuitive for the user, as can be seen in the instructions above.
+* AccountRecord: This keeps a record of all transactions made through the Account class, which are formatted in via the Format class.
+* Format: Formats all dates, numbers, and statement lines into the desired appearance. I chose to make this a separate class based on the principles of separation of concerns.
