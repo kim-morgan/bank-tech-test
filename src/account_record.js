@@ -1,41 +1,30 @@
 const Account = require("./account");
+const Format = require("./format");
 
 class AccountRecord {
 
-  constructor(accountInstance = new Account()) {
+  constructor(accountInstance = new Account(), formatClass = Format) {
     this.accountInstance = accountInstance;
     this.statement = ["date || credit || debit || balance"];
+    this.formatClass = formatClass;
   }
 
   recordDeposit(amount) {
     this.accountInstance.deposit(amount);
-    let date = this.getCurrentDate();
-    let balance = parseFloat(this.accountInstance.getBalance()).toFixed(2);
-    let formattedAmount = parseFloat(amount).toFixed(2);
-    this.statement.push(`${date} || ${formattedAmount} || || ${balance}`);
+    let date = new Date();
+    let balance = this.accountInstance.getBalance();
+    this.statement.push(this.formatClass.formatTransaction(date, amount, balance, "deposit"));
   }
 
   recordWithdrawal(amount) {
-    this.accountInstance.withdraw(amount);
-    let date = this.getCurrentDate();
-    let balance = parseFloat(this.accountInstance.getBalance()).toFixed(2);
-    let formattedAmount = parseFloat(amount).toFixed(2);
-    this.statement.push(`${date} || || ${formattedAmount} || ${balance}`);
+    this.accountInstance.deposit(amount);
+    let date = new Date();
+    let balance = this.accountInstance.getBalance();
+    this.statement.push(this.formatClass.formatTransaction(date, amount, balance, "withdrawal"));
   }
 
   printStatement() {
     return this.statement.join("\n");
-  }
-
-  getCurrentDate() {
-    let date = new Date();
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    if (month < 10) {
-      month = `0${month}`;
-    }
-    let year = date.getFullYear();
-    return `${day}/${month}/${year}`;
   }
 
 }
