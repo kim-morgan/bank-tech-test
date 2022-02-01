@@ -44,3 +44,11 @@ To see your statement, run:
 ```
 account.statement();
 ```
+
+### Notes
+* Withdrawals and deposits must be at least 0.01
+* The user must have sufficient funds to make a withdrawal
+* Unsuccessful transactions (below minimum amount/insufficient funds for withdrawal) will not be recorded on the statement
+
+## Demonstration
+![Screenshot of programme](https://github.com/kim-morgan/bank-tech-test/blob/main/images/screenshot-bank-test.png?raw=true)
