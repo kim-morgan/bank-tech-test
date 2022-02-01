@@ -24,11 +24,23 @@ Clone this repository, then run `npm install`
 ### Usage
 To launch, run the following commands:
 ```
+cd src
 node
-.load account_record.js
-record = new AccountRecord();
+.load account.js
+account = new Account();
 ```
 
-To record a deposit, run:
+To make a deposit, run the following, entering the amount you would like to deposit as the parameter.
 ```
+account.deposit(amount);
+```
+
+To make a withdrawal, run the following, entering the amount you would like to withdraw as the parameter.
+```
+account.withdraw(amount);
+```
+
+To see your statement, run:
+```
+account.statement();
 ```
