@@ -9,6 +9,9 @@ describe("Format", () => {
   it("Can render the date in the intended format", () => {
     expect(Format.formatDate(new Date())).toBe("31/01/2022");
   });
+  it("Can render the date in the intended format when the month is October or later", () => {
+    expect(Format.formatDate(new Date(2022, 10, 31))).toBe("31/10/2022");
+  })
   it("Can format a monetary amount to have two decimal places", () => {
     expect(Format.formatNumber(500)).toBe("500.00");
   });
