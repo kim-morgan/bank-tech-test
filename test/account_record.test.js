@@ -24,4 +24,8 @@ describe("AccountRecord", () => {
     record.recordDeposit(500);
     expect(record.printStatement()).toBe("date || credit || debit || balance\n31/01/2022 || 500.00 || || 500.00");
   });
+  it("Can record a withdrawal and show it on the statement", () => {
+    record.recordWithdrawal(250);
+    expect(record.printStatement()).toBe("date || credit || debit || balance\n31/01/2022 || 500.00 || || 500.00\n31/01/2022 || || 250.00 || 250.00");
+  })
 })

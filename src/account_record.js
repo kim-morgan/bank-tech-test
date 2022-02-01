@@ -12,7 +12,15 @@ class AccountRecord {
     let date = this.getCurrentDate();
     let balance = parseFloat(this.accountInstance.getBalance()).toFixed(2);
     let formattedAmount = parseFloat(amount).toFixed(2);
-    this.statement.push(`${date} || ${formattedAmount} || || ${balance}`)
+    this.statement.push(`${date} || ${formattedAmount} || || ${balance}`);
+  }
+
+  recordWithdrawal(amount) {
+    this.accountInstance.withdraw(amount);
+    let date = this.getCurrentDate();
+    let balance = parseFloat(this.accountInstance.getBalance()).toFixed(2);
+    let formattedAmount = parseFloat(amount).toFixed(2);
+    this.statement.push(`${date} || || ${formattedAmount} || ${balance}`);
   }
 
   printStatement() {
