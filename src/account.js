@@ -14,12 +14,14 @@ class Account {
   deposit(money) {
     this.isValidTransaction(money);
     this.balance += money;
+    this.record.recordTransaction(money, this.balance, "deposit")
   }
 
   withdraw(money) {
     this.isValidTransaction(money);
     this.sufficientFundsCheck(money);
     this.balance -= money;
+    this.record.recordTransaction(money, this.balance, "withdrawal")
   }
 
   sufficientFundsCheck(money) {
@@ -32,6 +34,10 @@ class Account {
     if (money < this.minimum_transaction) {
       throw new Error('Transaction value must be more than £0.01');
     }
+  }
+
+  statement() {
+    console.log(this.record.getStatement());
   }
 }
 

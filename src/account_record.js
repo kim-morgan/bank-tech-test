@@ -14,7 +14,6 @@ class AccountRecord {
   getStatement() {
     return this.statement.join('\n');
   }
-
 }
 
 module.exports = AccountRecord;

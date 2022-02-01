@@ -1,6 +1,20 @@
 const Account = require('../src/account');
 
-const account = new Account();
+getStatementMock = jest.fn();
+getStatementMock.mockReturnValueOnce(
+  'date || credit || debit || balance\n31/01/2022 || || 250.00 || 250.00\n31/01/2022 || 500.00 || || 500.00'
+  );
+
+const AccountRecordMock = {
+  getStatement: getStatementMock,
+  recordTransaction: jest.fn()
+}
+
+global.console = {
+  log: jest.fn(),
+};
+
+const account = new Account(AccountRecordMock);
 
 describe('Account', () => {
   it('starts off with a zero balance', () => {
@@ -9,6 +23,12 @@ describe('Account', () => {
   it('can take a deposit of 500', () => {
     account.deposit(500);
     expect(account.getBalance()).toBe(500);
+  });
+  it('can show statement', () => {
+    account.statement();
+    expect(global.console.log).toHaveBeenCalledWith(
+      'date || credit || debit || balance\n31/01/2022 || || 250.00 || 250.00\n31/01/2022 || 500.00 || || 500.00'
+    );
   });
   it('can withdraw 250', () => {
     account.withdraw(250);
