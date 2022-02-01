@@ -1,7 +1,12 @@
 const Format = require("../src/format");
 
-describe("Format", () => {
-  it("", () => {
+beforeAll(() => {
+  jest.useFakeTimers('modern');
+  jest.setSystemTime(new Date(2022, 0, 31));
+});
 
+describe("Format", () => {
+  it("Can render the date in the intended format", () => {
+    expect(Format.getCurrentDate()).toBe("31/01/2022");
   });
 });
